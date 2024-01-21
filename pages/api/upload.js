@@ -1,7 +1,8 @@
 // pages/api/upload.js
 
 import multer from 'multer';
-import fs from 'fs-extra';
+const fs = require('fs');
+import fsExtra from 'fs-extra';
 import path from 'path';
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
 import { OpenAI } from "@langchain/openai"
@@ -10,7 +11,8 @@ const uploadDir = '/tmp/uploads'
 console.log(uploadDir, 'uploadDir------')
 
 // Create the upload directory if it doesn't exist
-fs.ensureDirSync(uploadDir);
+fsExtra.ensureDirSync(uploadDir);
+fs.mkdirSync(uploadDir);
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => { 
