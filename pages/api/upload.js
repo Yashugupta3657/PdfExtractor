@@ -56,7 +56,7 @@ export default async function handler(req, res) {
       
       // if (true||file.path !== newPath) { // Check if the source and destination are different
         await fs.move(file.path, newPath);
-        const loader = new PDFLoader(`./public/uploads/${fileName}`, {
+        const loader = new PDFLoader(path.join(process.cwd(), 'public/uploads', fileName), {
           splitPages: false,
         });
         let docs = await loader.load();
