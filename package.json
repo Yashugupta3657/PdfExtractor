@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@langchain/openai": "^0.0.12",
+    "formidable": "^3.5.1",
+    "fs-extra": "^11.2.0",
+    "langchain": "^0.1.4",
+    "multer": "^1.4.5-lts.1",
+    "next": "latest",
+    "path": "^0.12.7",
+    "pdf-parse": "^1.1.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-dropzone": "^14.2.3"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
