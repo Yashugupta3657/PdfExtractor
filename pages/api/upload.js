@@ -6,13 +6,11 @@ import fsExtra from 'fs-extra';
 import path from 'path';
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
 import { OpenAI } from "@langchain/openai"
-const uploadDir = '/tmp/uploads'
+const uploadDir = '/tmp'
 
 console.log(uploadDir, 'uploadDir------')
 
 // Create the upload directory if it doesn't exist
-fsExtra.ensureDirSync(uploadDir);
-fs.mkdirSync(uploadDir);
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => { 
@@ -56,7 +54,7 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'No file provided.' });
       }
       const fileName = `${Date.now()}-${file.originalname}`
-      const newPath = path.join('/tmp/uploads', fileName);
+      const newPath = path.join('/tmp', fileName);
       console.log(newPath, 'newpath')
       console.log(__dirname, 'dirname')
       // console.log(newPath, "---------")
@@ -64,7 +62,7 @@ export default async function handler(req, res) {
       // if (true||file.path !== newPath) { // Check if the source and destination are different
       console.log(file.path, 'file path')
         // await fs.move(file.path, newPath);
-        const loader = new PDFLoader(path.join('/tmp/uploads', fileName), {
+        const loader = new PDFLoader(path.join('/tmp', fileName), {
           splitPages: false,
         });
         let docs = await loader.load();
