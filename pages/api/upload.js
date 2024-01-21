@@ -5,9 +5,9 @@ import fs from 'fs-extra';
 import path from 'path';
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
 import { OpenAI } from "@langchain/openai"
-const uploadDir = path.join(__dirname, 'public/uploads')
+const uploadDir = path.join(__dirname, '../public/uploads')
 
-console.log(uploadDir, '-------------')
+console.log(uploadDir, 'uploadDir------')
 
 // Create the upload directory if it doesn't exist
 fs.ensureDirSync(uploadDir);
@@ -54,14 +54,15 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'No file provided.' });
       }
       const fileName = `${Date.now()}-${file.originalname}`
-      const newPath = path.join(__dirname, 'public/uploads', fileName);
-      console.log(__dirname, '-------------cwd')
+      const newPath = path.join(__dirname, '../public/uploads', fileName);
+      console.log(newPath, 'newpath')
+      console.log(__dirname, 'dirname')
       // console.log(newPath, "---------")
       
       // if (true||file.path !== newPath) { // Check if the source and destination are different
-      console.log(file.path, '-------------')
+      console.log(file.path, 'file path')
         // await fs.move(file.path, newPath);
-        const loader = new PDFLoader(path.join(__dirname, 'public/uploads', fileName), {
+        const loader = new PDFLoader(path.join(__dirname, '../public/uploads', fileName), {
           splitPages: false,
         });
         let docs = await loader.load();
