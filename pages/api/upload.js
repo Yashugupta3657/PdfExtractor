@@ -65,7 +65,7 @@ export default async function handler(req, res) {
         const model = new OpenAI({
           modelName: "gpt-3.5-turbo-instruct", // Defaults to "gpt-3.5-turbo-instruct" if no model provided.
           temperature: 0.9,
-          openAIApiKey: "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", // In Node.js defaults to process.env.OPENAI_API_KEY
+          openAIApiKey: process.env.OPENAIKEY, // In Node.js defaults to process.env.OPENAI_API_KEY
         });
         const res1 = await model.call(
           docs
